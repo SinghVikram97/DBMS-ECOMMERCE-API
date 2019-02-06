@@ -160,3 +160,9 @@ const Order = db.define("order", {
     type: Sequelize.FLOAT
   }
 });
+
+db.sync().then(() => {
+  console.log("Database is Ready");
+});
+
+module.exports = { User, Product, Category, Seller, Cart, Order };
