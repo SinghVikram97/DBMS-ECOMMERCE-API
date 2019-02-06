@@ -2,6 +2,9 @@
 
 /product --> (GET) List all product available
 /product/id --> (GET) List the product with given product id
+/product/create --> (POST) Add a product to database
+/product/delete/id --> (DELETE) Delete a product from database
+/product/update/id ---> (PUT) Update a given product details
 
 *** Category Endpoints ***
 /categories/id --> (GET) List the type of category and it's subcategories
