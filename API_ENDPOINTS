@@ -1,0 +1,14 @@
+***Product Endpoints***
+
+/product --> (GET) List all product available
+/product/id --> (GET) List the product with given product id
+
+*** Category Endpoints ***
+/categories/id --> (GET) List the type of category and it's subcategories
+/categories/id/products --> (GET) List all products with given category
+
+*** Shopping Cart Enpoints ***
+/shoppingcart/id --> (GET) Returns items in cart with given id
+/shoppingcart/id --> (POST) request adds a product to cart with given id
+/shoppingcart/id --> (PUT) update quantity of product in given cart
+/shoppingcart/id --> (DELETE) deletes a product from given cart
