@@ -1,13 +1,8 @@
 const Sequelize = require("sequelize");
-const db = new Sequelize(
-  "ecommerce-cart",
-  "ecommerce-admin",
-  "ecommerce-pass",
-  {
-    dialect: "mysql",
-    host: "localhost"
-  }
-);
+const db = new Sequelize("ecommercedb", "ecommerceAdmin", "ecommercePass", {
+  dialect: "mysql",
+  host: "localhost"
+});
 
 const User = db.define("user", {
   user_id: {
