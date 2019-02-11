@@ -1,5 +1,5 @@
 const Sequelize = require("sequelize");
-const db = new Sequelize("ecommercedb", "ecommerceAdmin", "ecommercePass", {
+const db = new Sequelize("shopdb", "shopdbadmin", "shopdbpass", {
   dialect: "mysql",
   host: "localhost"
 });
@@ -26,6 +26,41 @@ const User = db.define("user", {
   },
   phone: {
     type: Sequelize.BIGINT
+  }
+});
+
+const Category = db.define("category", {
+  category_id: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    unique: true,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  name: {
+    type: Sequelize.STRING(50)
+  }
+});
+
+const Seller = db.define("seller", {
+  seller_id: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    unique: true,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  name: {
+    type: Sequelize.STRING(50)
+  },
+  phone: {
+    type: Sequelize.BIGINT
+  },
+  address: {
+    type: Sequelize.STRING(200)
+  },
+  rating: {
+    type: Sequelize.INTEGER
   }
 });
 
@@ -67,41 +102,6 @@ const Product = db.define("product", {
   }
 });
 
-const Category = db.define("category", {
-  category_id: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    unique: true,
-    primaryKey: true,
-    autoIncrement: true
-  },
-  name: {
-    type: Sequelize.STRING(50)
-  }
-});
-
-const Sellor = db.define("sellor", {
-  sellor_id: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    unique: true,
-    primaryKey: true,
-    autoIncrement: true
-  },
-  name: {
-    type: Sequelize.STRING(50)
-  },
-  phone: {
-    type: Sequelize.BIGINT
-  },
-  address: {
-    type: Sequelize.STRING(200)
-  },
-  rating: {
-    type: Sequelize.INTEGER
-  }
-});
-
 const Cart = db.define("cart", {
   cart_id: {
     type: Sequelize.INTEGER,
@@ -117,15 +117,15 @@ const Cart = db.define("cart", {
   userId: {
     type: Sequelize.INTEGER,
     references: {
-      model: user,
+      model: User,
       key: "user_id"
     }
   },
   productId: {
     type: Sequelize.INTEGER,
     references: {
-      model: "product",
-      key: product_id
+      model: Product,
+      key: "product_id"
     }
   }
 });
@@ -141,8 +141,8 @@ const Order = db.define("order", {
   userId: {
     type: Sequelize.INTEGER,
     references: {
-      model: "user",
-      key: user_id
+      model: User,
+      key: "user_id"
     }
   },
   orderDate: {
