@@ -41,7 +41,20 @@ router.post("/create", (req, res) => {
 });
 
 router.delete("/delete/:id", (req, res) => {
-  res.send("Delete product with given id");
+  const id = req.params.id;
+  let pos = -1;
+  for (let i = 0; i < products.length; i++) {
+    if (products[i].product_id == id) {
+      pos = i;
+      break;
+    }
+  }
+  if (pos != -1) {
+    products.splice(pos, 1);
+    res.json(products);
+  } else {
+    res.send("No product with given id found");
+  }
 });
 
 router.put("/update/:id", (req, res) => {
