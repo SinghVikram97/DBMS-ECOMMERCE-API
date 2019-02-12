@@ -58,7 +58,26 @@ router.delete("/delete/:id", (req, res) => {
 });
 
 router.put("/update/:id", (req, res) => {
-  res.send("Update product with given id");
+  const id = req.params.id;
+  name = req.body.name;
+  original_price = req.body.original_price;
+  discounted_price = req.body.discounted_price;
+  picture = req.body.picture;
+  categoryId = req.body.categoryId;
+  sellerId = req.body.sellerId;
+
+  for (let i = 0; i < products.length; i++) {
+    if (products[i].product_id == id) {
+      products[i].name = name;
+      products[i].original_price = original_price;
+      products[i].discounted_price = discounted_price;
+      products[i].picture = picture;
+      products[i].categoryId = categoryId;
+      products[i].sellerId = sellerId;
+      res.json(products[i]);
+    }
+  }
+  res.json("No product with given id found");
 });
 
 module.exports = router;
