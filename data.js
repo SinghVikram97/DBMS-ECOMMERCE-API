@@ -72,7 +72,26 @@ let categories = [
   }
 ];
 
+let cart = [
+  {
+    qty: 2,
+    user_id: 1,
+    product_id: 1
+  },
+  {
+    qty: 1,
+    user_id: 1,
+    product_id: 4
+  },
+  {
+    qty: 2,
+    user_id: 2,
+    product_id: 2
+  }
+];
+
 module.exports = {
   products,
-  categories
+  categories,
+  cart
 };

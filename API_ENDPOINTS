@@ -12,7 +12,7 @@
 /categories/id/products --> (GET) List all products with given category
 
 *** Shopping Cart Enpoints ***
-/shoppingcart/id --> (GET) Returns items in cart with given id
-/shoppingcart/id --> (POST) request adds a product to cart with given id
-/shoppingcart/id --> (PUT) update quantity of product in given cart
-/shoppingcart/id --> (DELETE) deletes a product from given cart
+/cart/user_id --> (GET) Return item in cart of person with given id
+/cart/user_id/product_id --> (POST) Adds given product of product_id into cart of user of given user_id
+/cart/user_id/product_id --> (PUT) update quantity of product in given cart of given user and product
+/cart/user_id/product_id --> (DELETE) Deletes a product with given product_id in cart of given user
