@@ -7,6 +7,7 @@
 /product/update/id ---> (PUT) Update a given product details
 
 *** Category Endpoints ***
+/categories --> (GET) List all categories 
 /categories/id --> (GET) List the type of category and it's subcategories
 /categories/id/products --> (GET) List all products with given category
 

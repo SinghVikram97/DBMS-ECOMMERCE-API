@@ -5,7 +5,7 @@ let products = [
     original_price: 13000,
     discounted_price: 10000,
     picture: "https://i.ibb.co/tc1PzwW/motog3.png",
-    categoryId: 3,
+    categoryId: 1,
     sellerId: 4
   },
   {
@@ -14,7 +14,7 @@ let products = [
     original_price: 30000,
     discounted_price: 25000,
     picture: "https://i.ibb.co/SQjc0Z1/iphone.jpg",
-    categoryId: 3,
+    categoryId: 1,
     sellerId: 2
   },
   {
@@ -23,7 +23,7 @@ let products = [
     original_price: 4000,
     discounted_price: 3000,
     picture: "https://i.ibb.co/gtjXQXw/hardisk.jpg",
-    categoryId: 4,
+    categoryId: 2,
     sellerId: 5
   },
   {
@@ -37,6 +37,42 @@ let products = [
   }
 ];
 
+let categories = [
+  {
+    id: 1,
+    name: "Mobiles"
+  },
+  {
+    id: 2,
+    name: "Electronics"
+  },
+  {
+    id: 3,
+    name: "Men's Fashion"
+  },
+  {
+    id: 4,
+    name: "Women's Fashion"
+  },
+  {
+    id: 5,
+    name: "Home"
+  },
+  {
+    id: 6,
+    name: "Beauty"
+  },
+  {
+    id: 7,
+    name: "Sports"
+  },
+  {
+    id: 8,
+    name: "Books"
+  }
+];
+
 module.exports = {
-  products
+  products,
+  categories
 };
