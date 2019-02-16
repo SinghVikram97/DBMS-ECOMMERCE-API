@@ -4,7 +4,7 @@ let products = [
     name: "Moto G3",
     original_price: 13000,
     discounted_price: 10000,
-    picture: "https://i.ibb.co/tc1PzwW/motog3.png",
+    picture: "https://images-eu.ssl-images-amazon.com/images/G/31/img18/Wireless/JanART19/61FQsML7G0L.jpg",
     categoryId: 1,
     sellerId: 4
   },

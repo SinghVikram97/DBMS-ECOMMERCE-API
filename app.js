@@ -4,9 +4,11 @@ const app = express();
 const productRouter = require("./routes/product-routes/product");
 const categoriesRouter = require("./routes/category-routes/category");
 const cartRouter = require("./routes/cart-routes/cart-routes");
+const cors = require("cors");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
 
 app.use("/product", productRouter);
 app.use("/categories", categoriesRouter);
