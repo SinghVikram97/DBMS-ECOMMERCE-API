@@ -12,14 +12,7 @@ router.get("/:id", (req, res) => {
   const productInCart = [];
   for (let i = 0; i < cart.length; i++) {
     if (cart[i].user_id == id) {
-      for (let j = 0; j < products.length; j++) {
-        if (cart[i].product_id == products[j].product_id) {
-          productInCart.push({
-            product: products[j],
-            quantity: cart[i].qty
-          });
-        }
-      }
+      productInCart.push(cart[i]);
     }
   }
   res.json(productInCart);
@@ -27,8 +20,9 @@ router.get("/:id", (req, res) => {
 
 // Adds item with given product_id to cart of user with given user_id
 router.post("/:user_id/:product_id", (req, res) => {
-  const userId = req.params.user_id;
-  const productId = req.params.product_id;
+  const userId = Number(req.params.user_id);
+  const productId = Number(req.params.product_id);
+  const image = req.body.image;
   let quantity = 0;
   let found = false;
   for (let i = 0; i < cart.length; i++) {
@@ -43,7 +37,8 @@ router.post("/:user_id/:product_id", (req, res) => {
     cart.push({
       qty: 1,
       user_id: userId,
-      product_id: productId
+      product_id: productId,
+      image: image
     });
   }
 
