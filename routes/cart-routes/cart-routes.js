@@ -29,14 +29,23 @@ router.get("/:id", (req, res) => {
 router.post("/:user_id/:product_id", (req, res) => {
   const userId = req.params.user_id;
   const productId = req.params.product_id;
+  let quantity = 0;
+  let found = false;
+  for (let i = 0; i < cart.length; i++) {
+    if (cart[i].user_id === userId && cart[i].product_id === productId) {
+      cart[i].quantity = cart[i].quantity + 1;
+      found = true;
+      break;
+    }
+  }
 
-  const quantity = req.body.quantity;
-
-  cart.push({
-    qty: quantity,
-    user_id: userId,
-    product_id: productId
-  });
+  if (!found) {
+    cart.push({
+      qty: 1,
+      user_id: userId,
+      product_id: productId
+    });
+  }
 
   res.json(cart[cart.length - 1]);
 });
@@ -45,15 +54,18 @@ router.put("/:user_id/:product_id", (req, res) => {
   const userId = req.params.user_id;
   const productId = req.params.product_id;
 
-  const quantity = req.body.quantity;
-
+  let found = false;
   for (let i = 0; i < cart.length; i++) {
-    if (cart[i].user_id == userId && cart[i].product_id == productId) {
-      cart[i].qty = quantity;
-      res.json(cart[i]);
+    if (cart[i].user_id === userId && cart[i].product_id === productId) {
+      cart[i] += 1;
+      found = true;
+      res.send(cart[i]);
+      break;
     }
   }
-  res.json("Invalid userId or productId");
+  if (!found) {
+    res.json("Invalid userId or productId");
+  }
 });
 
 router.delete("/:user_id/:product_id", (req, res) => {
