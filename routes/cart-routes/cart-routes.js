@@ -18,31 +18,48 @@ router.get("/:id", (req, res) => {
   res.json(productInCart);
 });
 
-// Adds item with given product_id to cart of user with given user_id
+// Adds/Removes item with given product_id to cart of user with given user_id
 router.post("/:user_id/:product_id", (req, res) => {
   const userId = Number(req.params.user_id);
   const productId = Number(req.params.product_id);
   const image = req.body.image;
-  let quantity = 0;
-  let found = false;
-  for (let i = 0; i < cart.length; i++) {
-    if (cart[i].user_id === userId && cart[i].product_id === productId) {
-      cart[i].quantity = cart[i].quantity + 1;
-      found = true;
-      break;
+  const option = req.body.option;
+  if (option === "ADD") {
+    let found = false;
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].user_id === userId && cart[i].product_id === productId) {
+        cart[i].quantity = cart[i].quantity + 1;
+        found = true;
+        break;
+      }
+    }
+
+    if (!found) {
+      cart.push({
+        qty: 1,
+        user_id: userId,
+        product_id: productId,
+        image: image
+      });
+    }
+
+    res.json(cart[cart.length - 1]);
+  } else if (option === "REMOVE") {
+    let found = false;
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].user_id === userId && cart[i].product_id === productId) {
+        if (cart[i].quantity != 0) {
+          cart[i].quantity = cart[i].quantity - 1;
+          found = true;
+          res.json(cart[i]);
+        }
+      }
+    }
+
+    if (!found) {
+      res.send("No such product in cart");
     }
   }
-
-  if (!found) {
-    cart.push({
-      qty: 1,
-      user_id: userId,
-      product_id: productId,
-      image: image
-    });
-  }
-
-  res.json(cart[cart.length - 1]);
 });
 
 router.put("/:user_id/:product_id", (req, res) => {
