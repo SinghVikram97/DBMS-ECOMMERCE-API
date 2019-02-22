@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { products, categories, cart } = require("../../data");
-
+const fetch = require("node-fetch");
 // Returns all cart items
 router.get("/", (req, res) => {
   res.json(cart);
@@ -28,7 +28,7 @@ router.post("/:user_id/:product_id", (req, res) => {
     let found = false;
     for (let i = 0; i < cart.length; i++) {
       if (cart[i].user_id === userId && cart[i].product_id === productId) {
-        cart[i].quantity = cart[i].quantity + 1;
+        cart[i].qty = cart.qty + 1;
         found = true;
         break;
       }
@@ -48,9 +48,21 @@ router.post("/:user_id/:product_id", (req, res) => {
     let found = false;
     for (let i = 0; i < cart.length; i++) {
       if (cart[i].user_id === userId && cart[i].product_id === productId) {
-        if (cart[i].quantity != 0) {
-          cart[i].quantity = cart[i].quantity - 1;
+        if (cart[i].qty !== 0) {
+          cart[i].qty = cart[i].qty - 1;
           found = true;
+          if (cart[i].qty === 0) {
+            fetch(`http://localhost:4444/cart/${userId}/${productId}`, {
+              method: "DELETE",
+              mode: "cors",
+              headers: {
+                "Content-Type": "application/json"
+              }
+            })
+              .then(res => res.json())
+              .then(data => console.log(data))
+              .catch(err => console.log(err));
+          }
           res.json(cart[i]);
         }
       }
