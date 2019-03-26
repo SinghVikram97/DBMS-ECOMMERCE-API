@@ -83,23 +83,23 @@ const Product = db.define("product", {
     type: Sequelize.FLOAT
   },
   picture: {
-    type: Sequelize.STRING(50)
-  },
-  // Foreign keys
-  categoryId: {
-    type: Sequelize.INTEGER,
-    references: {
-      model: Category,
-      key: "category_id"
-    }
-  },
-  sellerId: {
-    type: Sequelize.INTEGER,
-    references: {
-      model: Seller,
-      key: "seller_id"
-    }
+    type: Sequelize.STRING(500)
   }
+  // Foreign keys
+  // categoryId: {
+  //   type: Sequelize.INTEGER,
+  //   references: {
+  //     model: Category,
+  //     key: "category_id"
+  //   }
+  // },
+  // sellerId: {
+  //   type: Sequelize.INTEGER,
+  //   references: {
+  //     model: Seller,
+  //     key: "seller_id"
+  //   }
+  // }
 });
 
 const Cart = db.define("cart", {
