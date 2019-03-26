@@ -24,11 +24,12 @@ router.post("/:user_id/:product_id", (req, res) => {
   const productId = Number(req.params.product_id);
   const image = req.body.image;
   const option = req.body.option;
+  console.log("option", option);
   if (option === "ADD") {
     let found = false;
     for (let i = 0; i < cart.length; i++) {
       if (cart[i].user_id === userId && cart[i].product_id === productId) {
-        cart[i].qty = cart.qty + 1;
+        cart[i].qty = cart[i].qty + 1;
         found = true;
         break;
       }
