@@ -23,9 +23,6 @@ const User = db.define("user", {
   password: {
     type: Sequelize.STRING(20),
     allowNull: false
-  },
-  phone: {
-    type: Sequelize.BIGINT
   }
 });
 
@@ -103,6 +100,13 @@ const Product = db.define("product", {
 });
 
 const Cart = db.define("cart", {
+  cart_id: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    unique: true,
+    primaryKey: true,
+    autoIncrement: true
+  },
   qty: {
     type: Sequelize.INTEGER,
     defaultValue: 0
