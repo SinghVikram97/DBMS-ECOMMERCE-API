@@ -6,6 +6,8 @@ const categoriesRouter = require("./routes/category-routes/category");
 const cartRouter = require("./routes/cart-routes/cart-routes");
 const userRouter = require("./routes/user-routes/user-routes");
 const cors = require("cors");
+const keys = require("./config/keys");
+const stripe = require("stripe")(keys.stripeSecretKey);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
